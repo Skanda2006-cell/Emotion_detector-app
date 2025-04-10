@@ -3,11 +3,7 @@ from transformers import pipeline
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-# Load multi-label emotion classifier
-classifier = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", top_k=None, device=-1)
-
-
-# Emotion to emoji + color mapping
+# Emotion to emoji and color mapping
 emotion_style = {
     "joy": ("😊", "#fff9c4"),
     "sadness": ("😢", "#bbdefb"),
@@ -18,52 +14,44 @@ emotion_style = {
     "disgust": ("🤢", "#c5e1a5"),
 }
 
-# Session state for mood diary
+# Initialize model (CPU only)
+classifier = pipeline(
+    "text-classification",
+    model="j-hartmann/emotion-english-distilroberta-base",
+    device=-1  # use CPU
+)
+
+# Set page
+st.set_page_config(page_title="Emotion Detector 2.0", layout="centered")
+st.title("🧠 Emotion Detector 2.0 — Multi-Emotion Version")
+st.write("Enter your thoughts, and I'll detect the top 3 emotions!")
+
+# Mood diary state
 if "mood_diary" not in st.session_state:
     st.session_state.mood_diary = []
 
-st.set_page_config(page_title="Emotion Detector 2.0", layout="centered")
+# Input
+text = st.text_area("How are you feeling?")
 
-st.title("🧠 Emotion Detector 2.0 (Multi-Emotion)")
-st.write("Type how you're feeling and let the AI detect top 3 emotions!")
-
-text = st.text_area("Enter your message:")
-
-if st.button("Analyze Emotions"):
+if st.button("🔍 Analyze"):
     if text.strip():
-        results = classifier(text, top_k=None)
-
-        # Flatten results if needed
-        if isinstance(results[0], list):
-            results = results[0]
-
-        # Get top 3 emotions
+        results = classifier(text)
         top_emotions = sorted(results, key=lambda x: x['score'], reverse=True)[:3]
 
-        # Pick the top one for styling
-        main_emotion = top_emotions[0]['label']
-        emoji, bg_color = emotion_style.get(main_emotion.lower(), ("🤔", "#eeeeee"))
-        text_color = "#000000" if bg_color in ["#fff9c4", "#c8e6c9", "#bbdefb", "#c5e1a5", "#eeeeee"] else "#ffffff"
+        for emotion_data in top_emotions:
+            emotion = emotion_data["label"]
+            score = round(emotion_data["score"] * 100, 2)
+            emoji, bg_color = emotion_style.get(emotion.lower(), ("🤔", "#eeeeee"))
+            text_color = "#000000" if bg_color in ["#fff9c4", "#c8e6c9", "#bbdefb", "#c5e1a5", "#eeeeee"] else "#ffffff"
 
-        # Styling
-        st.markdown(
-            f"""
-            <style>
-            div[data-testid="stApp"] {{
-                background-color: {bg_color};
-                color: {text_color};
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
-        # Show emotions
-        for item in top_emotions:
-            emotion = item["label"]
-            score = round(item["score"] * 100, 2)
-            emo_icon = emotion_style.get(emotion.lower(), ("🤔",))[0]
-            st.markdown(f"### {emotion}: {emo_icon} — {score}%")
+            st.markdown(
+                f"""
+                <div style='background-color:{bg_color}; padding:10px; border-radius:10px; color:{text_color}; margin-bottom:10px;'>
+                <b>{emotion}</b> {emoji} — <b>{score}%</b>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
         # Save to mood diary
         st.session_state.mood_diary.append({
@@ -78,21 +66,23 @@ if st.button("Analyze Emotions"):
 if st.session_state.mood_diary:
     st.markdown("---")
     st.subheader("📝 Mood Diary")
-
     for entry in reversed(st.session_state.mood_diary):
-        emo_display = ", ".join(f"{e['label']} ({round(e['score']*100)}%)" for e in entry['emotions'])
-        st.write(f"[{entry['timestamp']}] → **{emo_display}** → _{entry['text']}_")
+        st.write(f"**[{entry['timestamp']}]** {entry['text']}")
+        for e in entry["emotions"]:
+            st.write(f"• {e['label']} — {round(e['score'] * 100, 2)}%")
 
-    # Pie Chart
+    # Emotion Chart
     st.markdown("---")
-    st.subheader("📊 Top Emotions Chart")
-    all_emotions = []
+    st.subheader("📊 Emotion Chart (Top Emotions)")
+
+    # Flatten and count
+    emotion_counter = {}
     for entry in st.session_state.mood_diary:
-        all_emotions.extend([e['label'] for e in entry['emotions']])
-    counts = {e: all_emotions.count(e) for e in set(all_emotions)}
+        for e in entry["emotions"]:
+            emotion_counter[e["label"]] = emotion_counter.get(e["label"], 0) + 1
 
     fig, ax = plt.subplots()
-    ax.pie(counts.values(), labels=counts.keys(), autopct='%1.1f%%', startangle=90)
+    ax.pie(emotion_counter.values(), labels=emotion_counter.keys(), autopct='%1.1f%%', startangle=90)
     ax.axis('equal')
     st.pyplot(fig)
 
