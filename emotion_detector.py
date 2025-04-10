@@ -1,5 +1,9 @@
+import os
+os.environ["USE_FLASH_ATTENTION"] = "0"  # Prevents SDPA error (meta tensor issue)
+
 import torch
-torch.set_float32_matmul_precision("high")  # Avoids precision errors
+torch.set_float32_matmul_precision("high")  # Ensures safe CPU-level precision
+
 import streamlit as st
 from transformers import pipeline
 from datetime import datetime
