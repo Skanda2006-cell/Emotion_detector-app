@@ -1,3 +1,8 @@
+import os
+os.environ["USE_FLASH_ATTENTION"] = "0"  # Disables SDPA/flash attention
+
+import torch
+torch.set_float32_matmul_precision("high")  # Avoids precision errors
 import streamlit as st
 from transformers import pipeline
 from datetime import datetime
