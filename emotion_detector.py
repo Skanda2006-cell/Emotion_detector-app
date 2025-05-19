@@ -26,8 +26,8 @@ emotion_gifs = {
 }
 
 # Page setup
-st.set_page_config(page_title="Emotion Detector 3.0 😎", layout="wide")
-st.title("💬 Emotion Detector 3.0")
+st.set_page_config(page_title="Emotion Detector:text based 😎", layout="wide")
+st.title("💬 Emotion Detector: Text based")
 st.markdown("Multi-label detection + Reaction GIFs 😄🎬")
 
 # Initialize mood diary
