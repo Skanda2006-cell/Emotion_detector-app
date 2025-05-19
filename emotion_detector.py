@@ -93,7 +93,7 @@ if st.button("Analyze 🔍"):
                 vibe_emoji, vibe_color = vibe_colors.get(top_emotion, ("❓", "gray"))
 
                 st.markdown("---")
-                st.markdown(f"## 🔋 Vibe Meter: {vibe_emoji} {top_emotion.capitalize()}")
+                st.markdown(f"## Emotion Meter: {vibe_emoji} {top_emotion.capitalize()}")
                 st.progress(int(top_score * 100))
                 st.markdown(
                     f"<p style='color:{vibe_color}; font-size:20px;'>Confidence: {top_score:.2%}</p>",
