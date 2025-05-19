@@ -1,6 +1,5 @@
 streamlit
-transformers==4.36.2
-torch==2.1.0+cpu
+transformers
+torch
 matplotlib
 emoji
---extra-index-url https://download.pytorch.org/whl/cpu
