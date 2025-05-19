@@ -19,7 +19,7 @@ emotion_gifs = {
     "sadness": "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjVrZ21vbTZsaTh5amNrdTlieGUzMWR2NHIyZnNxc2xnOGJsOTgwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mpy4YrE8nw6K3FCfz0/giphy.gif",
     "anger": "https://media.giphy.com/media/l3V0j3ytFyGHqiV7W/giphy.gif",
     "fear": "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmsyOGRqMm1lcXg3Zjd5bW9uc3hzbno0YmJodDR3MGszdHRwbTZ0dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DHw6uxU2WbJ3a/giphy.gif",
-    "surprise": "https://tenor.com/en-GB/view/nitch-gif-11388006018378072674",
+    "surprise": "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWY1eXMwdjY0bnhmM2d3ZHIweWJwdHB5dHlocHphcHdhamtoa21wcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/E9bnFb6MvQgdTTS0CF/giphy.gif",
     "love": "https://media.giphy.com/media/l0HlOvJ7yaacpuSas/giphy.gif",
     "neutral": "https://media.giphy.com/media/xT9IgIc0lryrxvqVGM/giphy.gif",
     "disgust": "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"
