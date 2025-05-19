@@ -100,7 +100,20 @@ if st.button("Analyze 🔍"):
                     unsafe_allow_html=True
                 )
 
-                
+                # Detected Emotions Section
+                st.markdown("---")
+                st.subheader("🎭 Detected Emotions")
+
+                for r in detected:
+                    label = r['label']
+                    score = r['score']
+                    emoji = emotion_icons.get(label, "")
+                    color = emotion_colors.get(label, "#eee")
+                    st.markdown(
+                        f"<div style='background-color:{color}; padding:10px; border-radius:10px; font-size:18px;'>"
+                        f"{emoji} <b>{label.capitalize()}</b>: {score:.2%}</div>",
+                        unsafe_allow_html=True
+                    )
 
                 st.session_state.mood_diary.append((text.strip(), top_emotion))
 
