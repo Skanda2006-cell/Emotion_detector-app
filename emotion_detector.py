@@ -17,7 +17,7 @@ emotion_colors = {
 emotion_gifs = {
     "joy": "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExanRoYjdlZmpwaDQ5azkxbWg1ZzJhY2NrcWt2dXZyNHBzeTNzaTZ0diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5tkQ2D8oxYBVKwWNMV/giphy.gif",
     "sadness": "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjVrZ21vbTZsaTh5amNrdTlieGUzMWR2NHIyZnNxc2xnOGJsOTgwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mpy4YrE8nw6K3FCfz0/giphy.gif",
-    "anger": "https://media.giphy.com/media/l3V0j3ytFyGHqiV7W/giphy.gif",
+    "anger": "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGw0ZHJyYnV4ZzJzcXBjd2FmOGJwd203NGtvbmwwazR4cDR0MGkwMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/69Egkd3vBh3AXuA5SC/giphy.gif",
     "fear": "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmsyOGRqMm1lcXg3Zjd5bW9uc3hzbno0YmJodDR3MGszdHRwbTZ0dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DHw6uxU2WbJ3a/giphy.gif",
     "surprise": "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWY1eXMwdjY0bnhmM2d3ZHIweWJwdHB5dHlocHphcHdhamtoa21wcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/E9bnFb6MvQgdTTS0CF/giphy.gif",
     "love": "https://media.giphy.com/media/l0HlOvJ7yaacpuSas/giphy.gif",
